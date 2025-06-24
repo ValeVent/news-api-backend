@@ -4,7 +4,7 @@ const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const cors = require('cors');
-const fetch = require('node-fetch'); // <-- Aggiungi questa linea per importare node-fetch
+const fetch = require('node-fetch');
 
 // Configurazione CORS esplicita
 const corsOptions = {
@@ -28,7 +28,7 @@ const NEWS_API_KEY = 'd837f48ed2fe4fe094706057da58575c'; // La tua API Key per l
 
 server.get('/proxy-news', async (req, res) => {
   try {
-    const keyword = req.query.q; // Il frontend passerà la keyword come parametro 'q'
+    const keyword = req.query.q;
     if (!keyword) {
       return res.status(400).json({ error: 'Keyword parameter (q) is required.' });
     }
@@ -41,17 +41,15 @@ server.get('/proxy-news', async (req, res) => {
       // Aggiungi qui altri parametri se la tua API li supporta (es. language: 'it')
     });
 
-    const response = await fetch(`<span class="math-inline">\{NEWS\_API\_URL\}?</span>{params.toString()}`);
-
+    const response = await fetch(`${NEWS_API_URL}?${params.toString()}`); // 
     if (!response.ok) {
-      // Se l'API esterna restituisce un errore, passalo al frontend
       const errorData = await response.json();
       console.error('External News API Error:', response.status, errorData);
       return res.status(response.status).json(errorData);
     }
 
     const data = await response.json();
-    res.json(data); // Invia i dati ricevuti dall'API di notizie al frontend
+    res.json(data);
   } catch (error) {
     console.error('Proxy Error:', error);
     res.status(500).json({ error: 'Internal server error during news fetch.' });
@@ -59,7 +57,7 @@ server.get('/proxy-news', async (req, res) => {
 });
 // =========================================================
 
-server.use(router); // Il router di json-server (per /users, ecc.)
+server.use(router);
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
