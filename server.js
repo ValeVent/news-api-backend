@@ -1,26 +1,65 @@
 const jsonServer = require('json-server');
-const auth = require('json-server-auth'); // <-- Aggiungi questa linea
+const auth = require('json-server-auth');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const cors = require('cors');
+const fetch = require('node-fetch'); // <-- Aggiungi questa linea per importare node-fetch
 
-// Configurazione CORS più esplicita (raccomandata)
+// Configurazione CORS esplicita
 const corsOptions = {
-  origin: ['https://valevent.github.io'], // L'origine del tuo frontend
+  origin: ['https://valevent.github.io'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
 };
 
-server.use(cors(corsOptions)); // Usa la configurazione CORS esplicita
+server.use(cors(corsOptions));
 server.use(middlewares);
 
-// Aggiungi queste linee per json-server-auth (DEVE stare qui)
-server.db = router.db; // Collega il router al database di json-server-auth
-server.use(auth);      // Usa il middleware di autenticazione
+server.db = router.db;
+server.use(auth);
 
-server.use(router); // Poi il router normale per le risorse
+// =========================================================
+// NUOVO: Endpoint Proxy per le News API
+// =========================================================
+const NEWS_API_URL = 'https://newsapi.org/v2/everything'; // O l'URL della tua API di notizie scelta
+const NEWS_API_KEY = 'd837f48ed2fe4fe094706057da58575c'; // La tua API Key per le notizie
+
+server.get('/proxy-news', async (req, res) => {
+  try {
+    const keyword = req.query.q; // Il frontend passerà la keyword come parametro 'q'
+    if (!keyword) {
+      return res.status(400).json({ error: 'Keyword parameter (q) is required.' });
+    }
+
+    // Costruisci l'URL per l'API di notizie esterna
+    const params = new URLSearchParams({
+      q: keyword,
+      sortBy: 'popularity',
+      apiKey: NEWS_API_KEY
+      // Aggiungi qui altri parametri se la tua API li supporta (es. language: 'it')
+    });
+
+    const response = await fetch(`<span class="math-inline">\{NEWS\_API\_URL\}?</span>{params.toString()}`);
+
+    if (!response.ok) {
+      // Se l'API esterna restituisce un errore, passalo al frontend
+      const errorData = await response.json();
+      console.error('External News API Error:', response.status, errorData);
+      return res.status(response.status).json(errorData);
+    }
+
+    const data = await response.json();
+    res.json(data); // Invia i dati ricevuti dall'API di notizie al frontend
+  } catch (error) {
+    console.error('Proxy Error:', error);
+    res.status(500).json({ error: 'Internal server error during news fetch.' });
+  }
+});
+// =========================================================
+
+server.use(router); // Il router di json-server (per /users, ecc.)
 
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
