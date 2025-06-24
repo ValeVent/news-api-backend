@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "email": "test@test.it",
+      "password": "$2a$10$X7aJE4WS71vr98XtZ4Y5JuuFNFH0bdjE7iv3XHETFMLhSg0SWq7/u",
+      "id": 1
+    },
+    {
+      "email": "valentinaventuro@libero.it",
+      "password": "$2a$10$TX3oyTNzUoY1SjoeO7M6ROyjS9LNz2bY3hp1jIqnNyMQ/HMFAB.W2",
+      "id": 2
+    },
+    {
+      "email": "mariorossi@test.it",
+      "password": "$2a$10$0IMsiciEfMEZ.0j3VXstKe3PD44fwIyRQ3.Qxkb65LM6SoDvsdukW",
+      "id": 3
+    }
+  ]
+}
