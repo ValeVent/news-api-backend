@@ -24,7 +24,8 @@ server.use(auth);
 // NUOVO: Endpoint Proxy per le News API
 // =========================================================
 const NEWS_API_URL = 'https://newsapi.org/v2/everything'; // O l'URL della tua API di notizie scelta
-const NEWS_API_KEY = 'd837f48ed2fe4fe094706057da58575c'; // La tua API Key per le notizie
+// const NEWS_API_KEY = 'd837f48ed2fe4fe094706057da58575c'; // La tua API Key per le notizie
+const NEWS_API_KEY = process.env.NEWS_API_KEY; // <-- commento la riga sopra e uso questa per prendere la chiave da una variabile d'ambiente, per evitare di esporre la chiave nell'applicazione e poterla gestire in modo sicuro (su render)
 
 server.get('/proxy-news', async (req, res) => {
   try {
