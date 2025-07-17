@@ -8,9 +8,9 @@ Il backend è un'API RESTful "fake" che serve due scopi principali per l'applica
 
 2.  Proxy per NewsAPI: Agisce da intermediario sicuro per le richieste a NewsAPI. Questo risolve due problemi comuni:
 
-  - Restrizioni di dominio: Molte API gratuite limitano le richieste da domini pubblici. Il proxy inoltra la richiesta dal server (Render.com), aggirando queste restrizioni.
+    - Restrizioni di dominio: Molte API gratuite limitano le richieste da domini pubblici. Il proxy inoltra la richiesta dal server (Render.com), aggirando queste restrizioni.
 
-  - Sicurezza della chiave API: La chiave API di NewsAPI non è esposta nel codice frontend, ma viene gestita in modo sicuro come variabile d'ambiente sul server.
+    - Sicurezza della chiave API: La chiave API di NewsAPI non è esposta nel codice frontend, ma viene gestita in modo sicuro come variabile d'ambiente sul server.
 
 La configurazione include il middleware cors per gestire le richieste Cross-Origin Resource Sharing (CORS), permettendo all'applicazione Angular (ospitata su un dominio diverso, come GitHub Pages) di comunicare senza problemi di sicurezza.
 
