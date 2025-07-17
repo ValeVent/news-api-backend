@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
 
 // Configurazione CORS esplicita
 const corsOptions = {
-  origin: ['https://valevent.github.io'],
+  origin: ['https://valevent.github.io', 'http://localhost:4200'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   optionsSuccessStatus: 204
