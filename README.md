@@ -4,9 +4,9 @@ Questo repository contiene il backend per l'applicazione Angular "App di News". 
 ## Descrizione Approfondita del Progetto
 Il backend è un'API RESTful "fake" che serve due scopi principali per l'applicazione frontend Angular:
 
-1.  Autenticazione Utente: Utilizza json-server-auth per gestire un sistema di login/registrazione completo, con hash delle password e generazione di token JWT. Questo permette all'applicazione frontend di avere un'autenticazione realistica senza la necessità di un database complesso.
+1.  **Autenticazione Utente**: Utilizza json-server-auth per gestire un sistema di login/registrazione completo, con hash delle password e generazione di token JWT. Questo permette all'applicazione frontend di avere un'autenticazione realistica senza la necessità di un database complesso.
 
-2.  Proxy per NewsAPI: Agisce da intermediario sicuro per le richieste a NewsAPI. Questo risolve due problemi comuni:
+2.  **Proxy per NewsAPI**: Agisce da intermediario sicuro per le richieste a NewsAPI. Questo risolve due problemi comuni:
 
     - Restrizioni di dominio: Molte API gratuite limitano le richieste da domini pubblici. Il proxy inoltra la richiesta dal server (Render.com), aggirando queste restrizioni.
 
@@ -15,19 +15,19 @@ Il backend è un'API RESTful "fake" che serve due scopi principali per l'applica
 La configurazione include il middleware cors per gestire le richieste Cross-Origin Resource Sharing (CORS), permettendo all'applicazione Angular (ospitata su un dominio diverso, come GitHub Pages) di comunicare senza problemi di sicurezza.
 
 ## Tecnologie Utilizzate
-- Node.js: Ambiente di runtime per eseguire il server.
+- **Node.js**: Ambiente di runtime per eseguire il server.
 
-- json-server: Libreria Node.js per creare rapidamente API RESTful da un file JSON.
+- **json-server**: Libreria Node.js per creare rapidamente API RESTful da un file JSON.
 
-- json-server-auth: Estensione per json-server che aggiunge funzionalità di autenticazione (login/registrazione con JWT).
+- **json-server-auth**: Estensione per json-server che aggiunge funzionalità di autenticazione (login/registrazione con JWT).
 
-- cors: Middleware Node.js per abilitare e configurare le intestazioni CORS.
+- **cors**: Middleware Node.js per abilitare e configurare le intestazioni CORS.
 
-- node-fetch: Per effettuare richieste HTTP dal backend al NewsAPI.
+- **node-fetch**: Per effettuare richieste HTTP dal backend al NewsAPI.
 
-- bcryptjs: Utilizzato da json-server-auth per l'hashing delle password.
+- **bcryptjs**: Utilizzato da json-server-auth per l'hashing delle password.
 
-- db.json: File JSON che funge da database per l'API (utenti).
+- **db.json**: File JSON che funge da database per l'API (utenti).
 
 ## Struttura del Repository
 Il repository contiene i seguenti file principali:
@@ -118,10 +118,10 @@ Il deployment attuale è disponibile all'indirizzo: https://news-api-backend-xj9
 5. Aggiungi la variabile d'ambiente NEWS_API_KEY nelle impostazioni del servizio su Render.com, con il valore della tua chiave API di NewsAPI.
 
 ## Contatti
-- GitHub (Frontend): https://github.com/ValeVent/news-api-con-autenticazione
+- **GitHub (Frontend)**: https://github.com/ValeVent/news-api-con-autenticazione
 
-- GitHub (Backend): https://github.com/ValeVent/news-api-backend
+- **GitHub (Backend)**: https://github.com/ValeVent/news-api-backend
 
-- LinkedIn: https://www.linkedin.com/in/valentina-venturo
+- **LinkedIn**: https://www.linkedin.com/in/valentina-venturo
 
-- Sito Web: http://www.valentinaventuro.it
+- **Sito Web**: http://www.valentinaventuro.it
